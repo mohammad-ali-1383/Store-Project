@@ -1,21 +1,28 @@
+import Layout from "./layout/Layout";
+
 import { Navigate, Route, Routes } from "react-router-dom";
 import ProductsPage from "./pages/ProductsPage";
 import DetailsPage from "./pages/DetailsPage";
 import CheckOutPage from "./pages/CheckOutPage";
 import PageNoutFound from "./pages/404";
 import ProductProvider from "./context/ProductContext";
+import CartProvider from "./context/CartContext";
 
 function App() {
   return (
-    <ProductProvider>
-      <Routes>
-        <Route index element={<Navigate to="/products" replace />} />
-        <Route path="/products" element={<ProductsPage />} />
-        <Route path="/products/:id" element={<DetailsPage />} />
-        <Route path="/checkout" element={<CheckOutPage />} />
-        <Route path="/*" element={<PageNoutFound />} />
-      </Routes>
-    </ProductProvider>
+    <CartProvider>
+      <ProductProvider>
+        <Layout>
+          <Routes>
+            <Route index element={<Navigate to="/products" replace />} />
+            <Route path="/products" element={<ProductsPage />} />
+            <Route path="/products/:id" element={<DetailsPage />} />
+            <Route path="/checkout" element={<CheckOutPage />} />
+            <Route path="/*" element={<PageNoutFound />} />
+          </Routes>
+        </Layout>
+      </ProductProvider>
+    </CartProvider>
   );
 }
 

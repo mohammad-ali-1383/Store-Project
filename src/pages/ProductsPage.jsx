@@ -14,7 +14,6 @@ import Loader from "../components/Loader";
 import styles from "./PeoductsPage.module.css";
 import SideBar from "../components/SideBar";
 
-
 function ProductsPage() {
   const products = useProducts();
 
@@ -39,10 +38,9 @@ function ProductsPage() {
     setDisplay(finalProducts);
   }, [query]);
 
- 
   return (
     <>
-      <SearchBox search={search} setSearch={setSearch} setQuery={setQuery}/>
+      <SearchBox search={search} setSearch={setSearch} setQuery={setQuery} />
       <div className={styles.container}>
         <div className={styles.products}>
           {!display.length && <Loader />}
@@ -51,7 +49,7 @@ function ProductsPage() {
           ))}
         </div>
 
-        <SideBar setQuery={setQuery}/>
+        <SideBar query={query} setQuery={setQuery} />
       </div>
     </>
   );
